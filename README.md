@@ -18,7 +18,7 @@ This template is designed as a robust starter for enterprise-grade front-end app
 
 ## 📂 Project Structure
 
-\`\`\`
+```
 src
 ├─ main.tsx
 ├─ vite-env.d.ts
@@ -63,7 +63,7 @@ src
 │  └─ routes (PublicRoute, PrivateRoute...)
 │
 └─ utils (security, toast, urls, user)
-\`\`\`
+```
 
 ---
 
@@ -71,34 +71,34 @@ src
 
 ### **Clone the project**
 
-\`\`\`bash
+```bash
 git clone https://github.com/rantomh/react-starter-template.git
 cd react-starter-template
-\`\`\`
+```
 
 ### **Install dependencies**
 
-\`\`\`bash
+```bash
 yarn install
-\`\`\`
+```
 
 ### **Start development server**
 
-\`\`\`bash
+```bash
 yarn dev
-\`\`\`
+```
 
 ### **Production build**
 
-\`\`\`bash
+```bash
 yarn build
-\`\`\`
+```
 
 ### **Preview build**
 
-\`\`\`bash
+```bash
 yarn preview
-\`\`\`
+```
 
 ---
 
@@ -106,11 +106,11 @@ yarn preview
 
 | Command | Description |
 |---------|------------|
-| \`yarn dev\` | Run dev server |
-| \`yarn build\` | Build production |
-| \`yarn preview\` | Preview build |
-| \`yarn lint\` | Run ESLint |
-| \`yarn format\` | Format using Prettier |
+| `yarn dev` | Run dev server |
+| `yarn build` | Build production |
+| `yarn preview` | Preview build |
+| `yarn lint` | Run ESLint |
+| `yarn format` | Format using Prettier |
 
 ---
 
@@ -143,12 +143,12 @@ yarn preview
 
 i18next is preconfigured. Add translations via:
 
-\`\`\`
+```
 src/common/locales/translation.en.json
 src/common/locales/translation.fr.json
-\`\`\`
+```
 
-Switch language using \`useLangue()\` hook.
+Switch language using `useLangue()` hook.
 
 ---
 
@@ -156,19 +156,19 @@ Switch language using \`useLangue()\` hook.
 
 ✔ Auth service abstraction  
 ✔ Redux auth slice ready  
-✔ Token encryption with \`crypto-js\`  
+✔ Token encryption with `crypto-js`  
 ✔ Private / Public route guards  
-✔ \`UserProvider\` for session context
+✔ `UserProvider` for session context
 
 ---
 
 ## 🧱 Folder Design Philosophy
 
 - **Separation by domain**, not by tech
-- \`application/\` = business logic
-- \`presentation/\` = UI only
-- \`domain/\` = models, types, constants
-- \`common/\` = shared cross-domain tools
+- `application/` = business logic
+- `presentation/` = UI only
+- `domain/` = models, types, constants
+- `common/` = shared cross-domain tools
 
 This allows maintainability & scalability for large teams.
 
@@ -177,14 +177,6 @@ This allows maintainability & scalability for large teams.
 ## 📜 License
 
 MIT — free to use, modify and distribute.
-
----
-
-## ⭐ Contributions
-
-Contributions & PRs are welcome!
-
-If you use this template, consider starring ⭐ the repo.
 
 ---
 
