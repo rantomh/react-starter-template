@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>ReactTemplate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="ReactTemplate: React SPA template" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="stylesheet" href="/styles/bootstrap.min.css" />
+  <link rel="stylesheet" href="/styles/font-awesome.min.css" />
+  <style>
+    .ns-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: #e6f0f9;
+    }
+    .ns-message {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      color: #17171d;
+      text-align: center;
+      max-width: 400px;
+      animation: fadeIn 0.8s ease-out;
+      box-shadow: 0 4px 20px rgba(9, 105, 195, 0.1);
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .preloader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      z-index: 100;
+    }
+    .preloader .spinner {
+      margin: 0;
+      padding: 0;
+      border: none;
+      outline: none;
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <noscript>
+    <div class="ns-container">
+      <div class="ns-message">
+        JavaScript is disabled in your browser. Please enable it to use this application.
+      </div>
+    </div>
+  </noscript>
+  <div id="root">
+    <div class="preloader">
+      <div class="spinner text-center">
+        <div class="spinner-grow text-secondary"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/scripts/jquery-3.4.1.min.js"></script>
+  <script src="/scripts/bootstrap.bundle.min.js"></script>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

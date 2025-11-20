@@ -1,0 +1,13 @@
+node_modules
+build
+dist
+coverage
+nbproject
+yarn.lock
+*.min.css
+*.min.js
+*.log
+
+#don't format these
+main.tsx
+index.html
