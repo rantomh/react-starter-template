@@ -1,4 +1,3 @@
-
 # 🚀 React SPA Template
 
 A modern, production-ready **React Single Page Application starter template** built with:
@@ -104,19 +103,20 @@ yarn preview
 
 ## 📦 Included Scripts
 
-| Command | Description |
-|---------|------------|
-| `yarn dev` | Run dev server |
-| `yarn build` | Build production |
-| `yarn preview` | Preview build |
-| `yarn lint` | Run ESLint |
-| `yarn format` | Format using Prettier |
+| Command        | Description           |
+| -------------- | --------------------- |
+| `yarn dev`     | Run dev server        |
+| `yarn build`   | Build production      |
+| `yarn preview` | Preview build         |
+| `yarn lint`    | Run ESLint            |
+| `yarn format`  | Format using Prettier |
 
 ---
 
 ## 🔌 Tech Stack
 
 ### **Core**
+
 - React 18
 - Vite
 - TypeScript
@@ -124,6 +124,7 @@ yarn preview
 - React Router DOM
 
 ### **UI & UX**
+
 - Bootstrap 5 + Sass
 - React-Toastify
 - React-Error-Boundary
@@ -131,6 +132,7 @@ yarn preview
 - Lucide Icons
 
 ### **Utilities**
+
 - Axios + Axios-Mock
 - Lodash
 - CryptoJS
@@ -185,4 +187,3 @@ MIT — free to use, modify and distribute.
 **Rantomah**
 
 ---
-
