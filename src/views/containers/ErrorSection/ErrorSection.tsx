@@ -1,5 +1,6 @@
+import { AlertTriangle, ArrowRight } from 'lucide-react';
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   title: string;
@@ -7,13 +8,24 @@ interface Props {
   redirectPath: string;
 }
 
-const ErrorSection: FC<Props> = ({ redirectPath }) => {
+const ErrorSection: FC<Props> = ({ title, message, redirectPath = '/' }) => {
+  const navigate = useNavigate();
+  const handleRedirect = () => {
+    navigate(redirectPath);
+  };
   return (
-    <div>
-      <p>NotFound</p>
-      <Link to={redirectPath} className="btn rounded-pill pxp-section-cta">
-        Go Home<span className="fa fa-angle-right"></span>
-      </Link>
+    <div className="error-container">
+      <div className="error-card">
+        <div className="error-icon">
+          <AlertTriangle />
+        </div>
+        <h1 className="error-title">{title}</h1>
+        <p className="error-message">{message}</p>
+        <button onClick={handleRedirect} className="error-button">
+          Go Back
+          <ArrowRight size={18} />
+        </button>
+      </div>
     </div>
   );
 };

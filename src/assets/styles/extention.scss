@@ -540,3 +540,100 @@ body {
     border-color: $dark-border !important;
   }
 }
+
+.error-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+  padding: 20px;
+
+  .error-card {
+    background: $dark-bg-secondary;
+    border: 1px solid $dark-border;
+    border-radius: 16px;
+    padding: 60px 48px;
+    width: 100%;
+    max-width: 540px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+    @media (max-width: 576px) {
+      padding: 48px 24px;
+    }
+
+    .error-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: rgba(239, 68, 68, 0.1);
+      margin: 0 auto 32px;
+
+      svg {
+        width: 40px;
+        height: 40px;
+        color: $accent-danger;
+      }
+    }
+
+    .error-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: $dark-text;
+      margin-bottom: 16px;
+
+      @media (max-width: 576px) {
+        font-size: 24px;
+      }
+    }
+
+    .error-message {
+      font-size: 16px;
+      color: $dark-text-secondary;
+      line-height: 1.6;
+      margin-bottom: 32px;
+
+      @media (max-width: 576px) {
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+    }
+
+    .error-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: $accent-primary;
+      border: none;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $accent-primary-hover;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+        color: white;
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
