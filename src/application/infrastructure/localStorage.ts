@@ -1,4 +1,4 @@
-import { decrypt, encrypt } from '@utils/security.util';
+import { decrypt, encrypt } from '@core/utils/security.util';
 
 export const isStorageAvailable = (): boolean => {
   return !!window.localStorage;

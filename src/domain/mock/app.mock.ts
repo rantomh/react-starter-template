@@ -1,5 +1,5 @@
-import Mock from '@common/configs/mock.config';
-import { absolute } from '@utils/urls.util';
+import Mock from '@core/configs/mock.config';
+import { absolute } from '@core/utils/urls.util';
 
 Mock.onPost(absolute((api) => api.authentication.login)).reply(
   200,

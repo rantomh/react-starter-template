@@ -1,5 +1,5 @@
-import user from './auth.slice';
+import auth from './auth.slice';
 
 export default {
-  user,
+  auth,
 };

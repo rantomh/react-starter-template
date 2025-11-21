@@ -1,11 +1,11 @@
 import axios from 'axios';
+import { absolute } from '@core/utils/urls.util';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import httpClient, { isResponseSuccess } from '@application/infrastructure/httpClient';
+import httpClient, { isSuccess } from '@application/infrastructure/httpClient';
+import { LoginReq, LoginResp } from '@domain/types/auth.type';
 import { Action, AsyncThunkConfig } from '@domain/types/redux.type';
-import { LoginReq, LoginResp } from '@domain/types/user.type';
-import { absolute } from '@utils/urls.util';
 
-export const login = createAsyncThunk<LoginResp, Action<LoginReq>, AsyncThunkConfig>('user/login', ({ payload }) => {
+export const login = createAsyncThunk<LoginResp, Action<LoginReq>, AsyncThunkConfig>('auth/login', ({ payload }) => {
   return new Promise<LoginResp>((success, error) => {
     httpClient.mocker
       .request<LoginReq, LoginResp>(
@@ -15,18 +15,18 @@ export const login = createAsyncThunk<LoginResp, Action<LoginReq>, AsyncThunkCon
         {},
       )
       .then((response) => {
-        if (isResponseSuccess(response)) {
+        if (isSuccess(response)) {
           success(response.data);
           return;
         }
-        error(new Error('An error occurred while sending login request.'));
+        error(new Error('message.error.auth'));
       })
       .catch((exception: Error) => {
-        if (axios.isAxiosError(exception) && exception.response?.data?.message) {
-          error(new Error(exception.response?.data?.message));
+        if (axios.isAxiosError(exception) && !!exception.response?.data?.message) {
+          error(new Error(exception.response.data.message));
           return;
         }
-        error(exception);
+        error(new Error('message.error.auth'));
       });
   });
 });

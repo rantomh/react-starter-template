@@ -1,4 +1,4 @@
-import { store } from '@common/configs/store.config';
+import { store } from '@core/configs/store.config';
 
 export type RootState = ReturnType<typeof store.getState>;
 

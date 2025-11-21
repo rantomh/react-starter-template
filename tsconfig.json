@@ -18,12 +18,10 @@
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["src/assets/*"],
-      "@common/*": ["src/common/*"],
+      "@core/*": ["src/core/*"],
       "@domain/*": ["src/domain/*"],
-      "@presentation/*": ["src/presentation/*"],
+      "@views/*": ["src/views/*"],
       "@application/*": ["src/application/*"],
-      "@utils/*": ["src/utils/*"],
-      "@envs/*": ["src/envs/*"],
       "@envs": ["src/envs"]
     }
   },

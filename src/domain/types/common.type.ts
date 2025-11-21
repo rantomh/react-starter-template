@@ -3,7 +3,7 @@ import { FieldInputProps, FormikProps } from 'formik';
 export type ID = string | number | undefined;
 
 export interface Identifiable {
-  id?: ID;
+  id: ID;
 }
 
 export interface BaseDTO extends Identifiable {

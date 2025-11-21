@@ -1,4 +1,4 @@
-import Mock, { mockInstance } from '@common/configs/mock.config';
+import Mock, { mockInstance } from '@core/configs/mock.config';
 import './app.mock';
 
 Mock.onAny().passThrough();

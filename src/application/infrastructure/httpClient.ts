@@ -1,8 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { loadUser } from '@core/helpers/user.helper';
+import { logoutRedirect } from '@core/utils/urls.util';
 import { GLOBAL_HTTP_TIMEOUT } from '@domain/constants/env';
 import { mockInstance } from '@domain/mock';
-import { logoutRedirect } from '@utils/urls.util';
-import { loadUser } from '@utils/user.util';
 
 export const getConfig = (withToken: boolean = false, configInput?: AxiosRequestConfig): AxiosRequestConfig => {
   let headers: Record<string, string> = {
@@ -24,7 +24,7 @@ export const getConfig = (withToken: boolean = false, configInput?: AxiosRequest
   };
 };
 
-export const isResponseSuccess = (response: AxiosResponse): boolean => {
+export const isSuccess = (response: AxiosResponse): boolean => {
   return !!response && !!response.status && response.status >= 200 && response.status < 300;
 };
 
@@ -72,7 +72,7 @@ const getClient = (axiosInstance: AxiosInstance, withToken: boolean = false) => 
       axiosInstance
         .post<R>(url, formData, getConfig(withToken, config))
         .then((response) => {
-          if (!isResponseSuccess(response)) {
+          if (!isSuccess(response)) {
             error(new Error('HTTP POST finished with error status.'));
             return;
           }
@@ -88,9 +88,11 @@ const mocker = getClient(mockInstance);
 
 const staticInstance = axios.create({ timeout: GLOBAL_HTTP_TIMEOUT });
 let currentLocation = '';
+
 export const setCurrentLocation = (pathname: string, search: string) => {
   currentLocation = pathname + search;
 };
+
 staticInstance.interceptors.response.use(
   (response) => response,
   (error) => {

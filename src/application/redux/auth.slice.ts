@@ -1,43 +1,42 @@
 import { SerializedError, createSlice } from '@reduxjs/toolkit';
 import { login } from '@application/services/auth.sa';
-import { LoginResp } from '@domain/types/user.type';
-import { toastify } from '@utils/toast.util';
+import { LoginResp } from '@domain/types/auth.type';
 
 interface State {
-  user?: LoginResp;
-  isSuccess?: boolean;
-  isLoading?: boolean;
+  response?: LoginResp;
   error?: SerializedError;
+  success?: boolean;
+  loading?: boolean;
 }
 
 const initialState: State = {};
 
 const userSlice = createSlice({
-  name: 'user',
+  name: 'auth',
   initialState,
   reducers: {
     reset: (state) => {
-      state.user = undefined;
+      state.response = undefined;
       state.error = undefined;
-      state.isSuccess = undefined;
-      state.isLoading = undefined;
-      state.error = undefined;
+      state.success = undefined;
+      state.loading = undefined;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
-      state.user = action.payload;
+      state.response = action.payload;
       state.error = undefined;
-      state.isLoading = false;
+      state.success = true;
+      state.loading = false;
     });
     builder.addCase(login.pending, (state) => {
-      state.isLoading = true;
+      state.loading = true;
     });
     builder.addCase(login.rejected, (state, action) => {
-      state.user = undefined;
+      state.response = undefined;
       state.error = action.error;
-      state.isLoading = false;
-      toastify.error(action?.error?.message as string);
+      state.success = false;
+      state.loading = false;
     });
   },
 });

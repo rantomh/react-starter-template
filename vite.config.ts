@@ -7,11 +7,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@assets': path.resolve('src/assets'),
-      '@common': path.resolve('src/common'),
+      '@core': path.resolve('src/core'),
       '@domain': path.resolve('src/domain'),
-      '@presentation': path.resolve('src/presentation'),
+      '@views': path.resolve('src/views'),
       '@application': path.resolve('src/application'),
-      '@utils': path.resolve('src/utils'),
       '@envs': path.resolve('src/envs'),
     },
   },

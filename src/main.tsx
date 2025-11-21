@@ -8,17 +8,17 @@ import { ToastContainer } from 'react-toastify';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { mode } from '@envs';
-import '@common/configs/i18n.config';
-import { store } from '@common/configs/store.config';
 
-import LangueProvider from '@presentation/providers/LangueProvider';
-import Root from '@presentation/Root';
-import GlobalErrorPage from '@presentation/pages/common/500';
+import '@core/configs/i18n.config';
+import { store } from '@core/configs/store.config';
+import LangueProvider from '@core/providers/LangueProvider';
+import UserProvider from '@core/providers/UserProvider';
+
+import Root from '@views/Root';
+import GlobalErrorPage from '@views/pages/common/500';
 
 import 'react-toastify/dist/ReactToastify.css';
-
 import '@assets/styles/extention.scss';
-import UserProvider from '@presentation/providers/UserProvider';
 
 const App = () => (
   <ErrorBoundary fallback={<GlobalErrorPage />}>
