@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { loadUser } from '@core/helpers/user.helper';
 import { logoutRedirect } from '@core/utils/urls.util';
 import { GLOBAL_HTTP_TIMEOUT } from '@domain/constants/env';
@@ -44,7 +44,7 @@ const getClient = (axiosInstance: AxiosInstance, withToken: boolean = false) => 
           ...getConfig(withToken, config),
         })
         .then((response) => success(response))
-        .catch((exception) => error(exception));
+        .catch((exception: Error) => error(exception));
     });
   },
 
@@ -57,7 +57,7 @@ const getClient = (axiosInstance: AxiosInstance, withToken: boolean = false) => 
           ...getConfig(withToken, config),
         })
         .then((response) => success(response))
-        .catch((exception) => error(exception));
+        .catch((exception: Error) => error(exception));
     });
   },
 
@@ -78,7 +78,7 @@ const getClient = (axiosInstance: AxiosInstance, withToken: boolean = false) => 
           }
           success(response.data);
         })
-        .catch(error);
+        .catch((exception: Error) => error(exception));
     });
   },
 });
@@ -95,8 +95,8 @@ export const setCurrentLocation = (pathname: string, search: string) => {
 
 staticInstance.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if ([401, 403].includes(error.response?.status)) {
+  (error: AxiosError) => {
+    if (error.response?.status && [401, 403].includes(error.response?.status)) {
       logoutRedirect(currentLocation);
     }
     return Promise.reject(error);

@@ -51,7 +51,7 @@ export const useAutofocusFirstInput = () => {
         ),
       );
       const firstVisible = nodes.find((el) => {
-        const style = window.getComputedStyle(el);
+        const style = globalThis.getComputedStyle(el);
         return style.display !== 'none' && el.offsetParent !== null;
       });
       firstVisible?.focus();
@@ -73,66 +73,6 @@ export const useAutofocusFirstInput = () => {
     }
   }, []);
   return ref;
-};
-
-export const useDropdown = () => {
-  useEffect(() => {
-    if (typeof window === 'undefined' || !window.bootstrap) return;
-
-    const $bs = window.bootstrap;
-    const CLASS_NAME = 'has-child-dropdown-show';
-
-    if (!$bs?.Dropdown || !$bs?.Dropdown.prototype) return;
-
-    // Prevent double patch
-    if ($bs.Dropdown.prototype._patched) return;
-    $bs.Dropdown.prototype._patched = true;
-
-    const originalToggle = $bs.Dropdown.prototype.toggle;
-    $bs.Dropdown.prototype.toggle = function () {
-      document.querySelectorAll('.'.concat(CLASS_NAME)).forEach((e) => {
-        e.classList.remove(CLASS_NAME);
-      });
-
-      let dd = this._element.closest('.dropdown')?.parentElement?.closest('.dropdown');
-      while (dd && dd !== document.body) {
-        dd.classList.add(CLASS_NAME);
-        dd = dd.parentElement?.closest('.dropdown');
-      }
-
-      return originalToggle.call(this);
-    };
-
-    document.querySelectorAll('.dropdown').forEach((dd) => {
-      dd.addEventListener('hide.bs.dropdown', function (e) {
-        if (dd.classList.contains(CLASS_NAME)) {
-          dd.classList.remove(CLASS_NAME);
-          e.preventDefault();
-        }
-        e.stopPropagation();
-      });
-    });
-
-    document.querySelectorAll('.dropdown-hover, .dropdown-hover-all .dropdown').forEach((dd) => {
-      dd.addEventListener('mouseenter', function (e) {
-        const target = e.target as HTMLElement;
-        const toggle = target?.querySelector(':scope>[data-bs-toggle="dropdown"]');
-        if (toggle && !toggle.classList.contains('show')) {
-          $bs.Dropdown.getOrCreateInstance(toggle as HTMLElement).toggle();
-          dd.classList.add(CLASS_NAME);
-          $bs.Dropdown.clearMenus();
-        }
-      });
-
-      dd.addEventListener('mouseleave', function (e) {
-        const target = e.target as HTMLElement;
-        const toggle = target?.querySelector(':scope>[data-bs-toggle="dropdown"]');
-        if (toggle && toggle.classList.contains('show')) {
-          $bs.Dropdown.getOrCreateInstance(toggle as HTMLElement).toggle();
-        }
-      });
-    });
-  }, []);
 };
 
 export { useObserver, useRefObserver };

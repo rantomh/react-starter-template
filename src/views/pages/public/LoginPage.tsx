@@ -12,9 +12,9 @@ import { LoginReq } from '@domain/types/auth.type';
 import { RootState } from '@domain/types/redux.type';
 
 const validationSchema = Yup.object({
-  email: Yup.string().email().required(),
+  email: Yup.string().required(),
   password: Yup.string().required(),
-  rememberMe: Yup.boolean(),
+  rememberMe: Yup.boolean().required(),
 });
 
 const Login: FC = () => {
@@ -41,7 +41,6 @@ const Login: FC = () => {
     if (user) {
       saveUser(user);
       navigate('/dashboard');
-      return;
     }
   }, [user, error]);
 
@@ -62,14 +61,14 @@ const Login: FC = () => {
         >
           {() => {
             return (
-              <Form autoComplete="off" spellCheck={false} noValidate>
+              <Form autoComplete="off" spellCheck={false}>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">
                     Email address
                   </label>
 
                   <Field
-                    type="email"
+                    type="text"
                     className="form-control"
                     id="email"
                     name="email"
@@ -77,6 +76,7 @@ const Login: FC = () => {
                     required
                     spellCheck={false}
                     autoComplete="off"
+                    disabled={loading}
                   />
                 </div>
 
@@ -93,12 +93,19 @@ const Login: FC = () => {
                     placeholder="Enter your password"
                     required
                     autoComplete="off"
+                    disabled={loading}
                   />
                 </div>
 
                 <div className="d-flex justify-content-between align-items-center mb-4">
                   <div className="form-check">
-                    <Field type="checkbox" className="form-check-input" id="rememberMe" name="rememberMe" />
+                    <Field
+                      disabled={loading}
+                      type="checkbox"
+                      className="form-check-input"
+                      id="rememberMe"
+                      name="rememberMe"
+                    />
                     <label className="form-check-label" htmlFor="rememberMe">
                       Remember me
                     </label>

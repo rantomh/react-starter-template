@@ -7,11 +7,11 @@ interface Props {
   redirectPath?: string;
 }
 
-const NotAuthorizedPage: FC<Props> = ({ title, message }) => (
+const NotAuthorizedPage: FC<Props> = ({ title, message, redirectPath }) => (
   <ErrorSection
     title={title ?? 'This page is not authorized'}
     message={message ?? "You can't access to the content of this page."}
-    redirectPath="/"
+    redirectPath={redirectPath}
   />
 );
 

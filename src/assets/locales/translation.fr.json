@@ -1,7 +1,8 @@
 {
   "message": {
     "error": {
-      "auth": "Authentification échouée"
+      "auth": "Authentification échouée",
+      "auth2": "Authentification échouée maintenant"
     }
   }
 }

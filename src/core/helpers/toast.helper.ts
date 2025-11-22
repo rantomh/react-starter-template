@@ -1,10 +1,9 @@
 import { Bounce, ToastOptions, toast } from 'react-toastify';
-import { generateHash } from '../utils/security.util';
 
 const defaultOptions: ToastOptions = {
   transition: Bounce,
-  position: 'top-center',
-  autoClose: 3000,
+  position: 'bottom-right',
+  autoClose: 2000,
   hideProgressBar: true,
   closeOnClick: true,
   pauseOnHover: false,
@@ -15,13 +14,10 @@ const defaultOptions: ToastOptions = {
 type ToastType = 'info' | 'success' | 'warning' | 'error' | 'default';
 
 function showToast(type: ToastType, message: string, additionalOptions?: ToastOptions) {
-  const toastId = generateHash(message);
-  if (!toast.isActive(toastId)) {
-    if (type === 'default') {
-      toast(message, { toastId, ...defaultOptions, ...additionalOptions });
-    } else {
-      toast[type](message, { toastId, ...defaultOptions, ...additionalOptions });
-    }
+  if (type === 'default') {
+    toast(message, { ...defaultOptions, ...additionalOptions });
+  } else {
+    toast[type](message, { ...defaultOptions, ...additionalOptions });
   }
 }
 

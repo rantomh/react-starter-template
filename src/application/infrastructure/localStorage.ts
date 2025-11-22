@@ -1,27 +1,27 @@
 import { decrypt, encrypt } from '@core/utils/security.util';
 
 export const isStorageAvailable = (): boolean => {
-  return !!window.localStorage;
+  return !!globalThis.localStorage;
 };
 
 export const saveItem = (key: string, value: string) => {
   if (!isStorageAvailable()) throw new Error('localStorage unavailable.');
-  window.localStorage.setItem(key, value);
+  globalThis.localStorage.setItem(key, value);
 };
 
 export const restoreItem = (key: string): string | null => {
   if (!isStorageAvailable()) throw new Error('localStorage unavailable.');
-  return window.localStorage.getItem(key);
+  return globalThis.localStorage.getItem(key);
 };
 
 export const removeItem = (key: string): void => {
   if (!isStorageAvailable()) return;
-  window.localStorage.removeItem(key);
+  globalThis.localStorage.removeItem(key);
 };
 
 export const clearAll = (): void => {
   if (!isStorageAvailable()) return;
-  window.localStorage.clear();
+  globalThis.localStorage.clear();
 };
 
 export const saveCryptedItem = (key: string, value: string) => {

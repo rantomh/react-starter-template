@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 interface Props {
   title: string;
   message?: string;
-  redirectPath: string;
+  redirectPath?: string;
 }
 
 const ErrorSection: FC<Props> = ({ title, message, redirectPath = '/' }) => {

@@ -26,7 +26,7 @@ const App = () => (
       <Provider store={store}>
         <UserProvider>
           <Root />
-          <ToastContainer limit={3} />
+          <ToastContainer limit={2} />
         </UserProvider>
       </Provider>
     </LangueProvider>
