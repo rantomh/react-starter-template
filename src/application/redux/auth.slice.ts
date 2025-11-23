@@ -1,5 +1,5 @@
 import { SerializedError, createSlice } from '@reduxjs/toolkit';
-import { login } from '@application/services/auth.sa';
+import { login } from '@application/services/auth.service';
 import { LoginResp } from '@domain/types/auth.type';
 
 interface State {

@@ -18,7 +18,7 @@ import Root from '@views/Root';
 import GlobalErrorPage from '@views/pages/common/500';
 
 import 'react-toastify/dist/ReactToastify.css';
-import '@assets/styles/extention.scss';
+import '@assets/styles/main.scss';
 
 const App = () => (
   <ErrorBoundary fallback={<GlobalErrorPage />}>

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { removeItem, restoreCryptedItem } from '@application/infrastructure/localStorage';
+import { removeItem, restoreCryptedItem } from '@core/infrastructure/localStorage';
 
 export const usePageTokenValidation = (removeTokenAfterCheck = true): boolean => {
   const [searchParams, setSearchParams] = useSearchParams();

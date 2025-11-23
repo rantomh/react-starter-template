@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import { isConnected } from '@core/helpers/user.helper';
+import { setCurrentLocation } from '@core/infrastructure/httpClient';
+import { isStorageAvailable } from '@core/infrastructure/localStorage';
 import { assignTo } from '@core/utils/urls.util';
 import NotAuthorizedPage from '@views/pages/common/403';
-import { setCurrentLocation } from '@application/infrastructure/httpClient';
-import { isStorageAvailable } from '@application/infrastructure/localStorage';
 
 interface Props {
   children: React.ReactNode;

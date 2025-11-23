@@ -1,7 +1,7 @@
 import axios from 'axios';
+import httpClient, { isSuccess } from '@core/infrastructure/httpClient';
 import { absolute } from '@core/utils/urls.util';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import httpClient, { isSuccess } from '@application/infrastructure/httpClient';
 import { LoginReq, LoginResp } from '@domain/types/auth.type';
 import { Action, AsyncThunkConfig } from '@domain/types/redux.type';
 

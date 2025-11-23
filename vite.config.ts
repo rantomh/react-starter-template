@@ -1,9 +1,9 @@
 import path from 'node:path';
-import { defineConfig } from 'vite';
+import { UserConfig, defineConfig } from 'vite';
 import htmlMinify from 'vite-plugin-html-minify';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig({
+const config = {
   resolve: {
     alias: {
       '@assets': path.resolve('src/assets'),
@@ -51,4 +51,11 @@ export default defineConfig({
       },
     },
   },
-});
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/core/configs/test.config.ts',
+  },
+};
+
+export default defineConfig(Object.freeze(config));

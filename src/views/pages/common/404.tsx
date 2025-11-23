@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import ErrorSection from '@views/containers/ErrorSection';
+import ErrorSection from '@views/components/organisms/ErrorSection';
 
 const NotFoundPage: FC = () => (
   <ErrorSection

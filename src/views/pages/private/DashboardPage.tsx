@@ -2,7 +2,7 @@ import { Activity, DollarSign, ShoppingCart, TrendingDown, TrendingUp, Users } f
 import { FC } from 'react';
 import RootLayout from '@views/layouts/RootLayout';
 
-const Dashboard: FC = () => {
+const DashboardPage: FC = () => {
   return (
     <RootLayout>
       <div className="stats-grid">
@@ -63,4 +63,4 @@ const Dashboard: FC = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardPage;
