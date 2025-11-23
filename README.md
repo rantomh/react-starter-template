@@ -184,6 +184,5 @@ MIT — free to use, modify and distribute.
 
 ## 👤 Author
 
-**Rantomah**
-
----
+**Rantomah** [Linkedin](https://www.linkedin.com/in/rantomah)\
+Senior Fullstack Developer & Software Architect
