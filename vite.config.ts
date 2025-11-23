@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { UserConfig, defineConfig } from 'vite';
+import { defineConfig } from 'vite';
 import htmlMinify from 'vite-plugin-html-minify';
 import react from '@vitejs/plugin-react';
 
