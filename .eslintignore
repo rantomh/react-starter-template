@@ -2,3 +2,4 @@ dist/*
 *.css
 *.svg
 node_modules
+.scannerwork

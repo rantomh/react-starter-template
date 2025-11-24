@@ -88,6 +88,10 @@ body {
       }
     }
 
+    .form-error {
+      border-color: $accent-danger;
+    }
+
     .form-check-input {
       background-color: $dark-bg-tertiary;
       border: 1px solid $dark-border;

@@ -11,3 +11,5 @@ yarn.lock
 #don't format these
 main.tsx
 index.html
+
+.scannerwork

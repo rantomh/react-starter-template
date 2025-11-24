@@ -1,11 +1,13 @@
-import { Field, Form, Formik } from 'formik';
-import { FC } from 'react';
+import classNames from 'classnames';
+import { Field, FieldInputProps, Form, Formik, FormikProps } from 'formik';
+import { FC, useRef } from 'react';
 import * as Yup from 'yup';
+import SafePassword, { SafePasswordHandle } from '@rantomah/react-safe-password';
 import GoogleIcon from '@views/components/atoms/GoogleIcon';
 import { LoginReq } from '@domain/types/auth.type';
 
 const validationSchema = Yup.object({
-  email: Yup.string().required(),
+  email: Yup.string().email().required(),
   password: Yup.string().required(),
   rememberMe: Yup.boolean().required(),
 });
@@ -19,6 +21,7 @@ interface Props {
 }
 
 const LoginForm: FC<Props> = ({ handleSubmit, handleGoogleLogin, loading = false }) => {
+  const safePassRef = useRef<SafePasswordHandle>(null);
   return (
     <div className="login-container">
       <div className="login-card">
@@ -34,7 +37,7 @@ const LoginForm: FC<Props> = ({ handleSubmit, handleGoogleLogin, loading = false
           validateOnBlur={false}
           validateOnChange={true}
         >
-          {() => (
+          {({ errors, touched }) => (
             <Form autoComplete="off" spellCheck={false}>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
@@ -42,11 +45,10 @@ const LoginForm: FC<Props> = ({ handleSubmit, handleGoogleLogin, loading = false
                 </label>
                 <Field
                   type="text"
-                  className="form-control"
+                  className={classNames('form-control', { 'form-error': !!errors.email && touched.email })}
                   id="email"
                   name="email"
                   placeholder="Enter your email"
-                  required
                   spellCheck={false}
                   autoComplete="off"
                   disabled={loading}
@@ -54,19 +56,28 @@ const LoginForm: FC<Props> = ({ handleSubmit, handleGoogleLogin, loading = false
               </div>
 
               <div className="mb-3">
-                <label htmlFor="password" className="form-label">
+                <label htmlFor="safe-password-password" className="form-label">
                   Password
                 </label>
-                <Field
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  placeholder="Enter your password"
-                  required
-                  autoComplete="off"
-                  disabled={loading}
-                />
+                <Field name="password">
+                  {({ field, form }: { field: FieldInputProps<string>; form: FormikProps<LoginReq> }) => (
+                    <SafePassword
+                      ref={safePassRef}
+                      id="password"
+                      name="password"
+                      value={field.value}
+                      onChange={(value) => {
+                        form.setFieldValue('password', value);
+                      }}
+                      showToggler={true}
+                      placeholder="Enter your password"
+                      className="form-control"
+                      errorClassName="form-error"
+                      disabled={loading}
+                      isError={!!form.errors.password && form.touched.password}
+                    />
+                  )}
+                </Field>
               </div>
 
               <div className="d-flex justify-content-between align-items-center mb-4">
