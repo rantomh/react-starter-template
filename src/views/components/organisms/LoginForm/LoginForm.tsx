@@ -14,14 +14,19 @@ const validationSchema = Yup.object({
 
 const initialValues: LoginReq = { email: '', password: '', rememberMe: false };
 
-interface Props {
+interface LoginFormProps {
   handleSubmit: (data: LoginReq) => void;
   handleGoogleLogin: () => void;
   loading?: boolean;
 }
 
-const LoginForm: FC<Props> = ({ handleSubmit, handleGoogleLogin, loading = false }) => {
-  const safePassRef = useRef<SafePasswordHandle>(null);
+interface SafePasswordRenderProps {
+  field: FieldInputProps<string>;
+  form: FormikProps<LoginReq>;
+}
+
+const LoginForm: FC<LoginFormProps> = ({ handleSubmit, handleGoogleLogin, loading = false }) => {
+  const safePasswordRef = useRef<SafePasswordHandle>(null);
   return (
     <div className="login-container">
       <div className="login-card">
@@ -56,25 +61,25 @@ const LoginForm: FC<Props> = ({ handleSubmit, handleGoogleLogin, loading = false
               </div>
 
               <div className="mb-3">
-                <label htmlFor="safe-password-password" className="form-label">
+                <label htmlFor="password" className="form-label">
                   Password
                 </label>
                 <Field name="password">
-                  {({ field, form }: { field: FieldInputProps<string>; form: FormikProps<LoginReq> }) => (
+                  {({ field, form }: SafePasswordRenderProps) => (
                     <SafePassword
-                      ref={safePassRef}
+                      ref={safePasswordRef}
                       id="password"
                       name="password"
                       value={field.value}
                       onChange={(value) => {
                         form.setFieldValue('password', value);
                       }}
-                      showToggler={true}
                       placeholder="Enter your password"
-                      className="form-control"
+                      inputClassName="form-control"
                       errorClassName="form-error"
-                      disabled={loading}
                       isError={!!form.errors.password && form.touched.password}
+                      disabled={loading}
+                      showToggler
                     />
                   )}
                 </Field>
